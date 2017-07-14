@@ -1,0 +1,1147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HRISModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tapp212Image">
+          <Key>
+            <PropertyRef Name="RecNo" />
+          </Key>
+          <Property Name="RecNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="imageData" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tappDFlexibles">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="EIC" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EIC" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tappDFlexiblesLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EIC" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="loginStatus" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="timeStamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tappEmployee">
+          <Key>
+            <PropertyRef Name="EIC" />
+          </Key>
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idNo" Type="nvarchar" MaxLength="4" />
+          <Property Name="EIC" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="20" />
+          <Property Name="middleName" Type="nvarchar" MaxLength="20" />
+          <Property Name="extName" Type="nvarchar" MaxLength="10" />
+          <Property Name="birthdate" Type="date" />
+          <Property Name="birthplace" Type="nvarchar" MaxLength="255" />
+          <Property Name="fullnameFirst" Type="nvarchar" MaxLength="60" />
+          <Property Name="fullnameLast" Type="nvarchar" MaxLength="60" />
+          <Property Name="gender" Type="int" />
+          <Property Name="prefixTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="sufixTitle" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tappEmpStatus">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="statusCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="statusName" Type="nvarchar" MaxLength="50" />
+          <Property Name="groupID" Type="int" />
+          <Property Name="isGovService" Type="int" />
+          <Property Name="isPlantilla" Type="int" />
+          <Property Name="class" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tappOffice">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="officeCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="officeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="accronym" Type="nvarchar" MaxLength="10" />
+          <Property Name="officeServiceRec" Type="nvarchar" MaxLength="100" />
+          <Property Name="branch" Type="nvarchar" MaxLength="10" />
+          <Property Name="sortTag" Type="int" />
+          <Property Name="tagRemarks" Type="int" />
+        </EntityType>
+        <EntityType Name="tappPosition">
+          <Key>
+            <PropertyRef Name="positionCode" />
+          </Key>
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="positionCode" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="fullDescription" Type="nvarchar" MaxLength="100" />
+          <Property Name="shortDescription" Type="nvarchar" MaxLength="100" />
+          <Property Name="accronym" Type="nvarchar" MaxLength="100" />
+          <Property Name="sg" Type="int" />
+        </EntityType>
+        <EntityType Name="tappPositionSub">
+          <Key>
+            <PropertyRef Name="subPositionCode" />
+          </Key>
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subPositionCode" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="positionCode" Type="nvarchar" MaxLength="30" />
+          <Property Name="subPositionName" Type="nvarchar" MaxLength="100" />
+          <Property Name="shortPositionName" Type="nvarchar" MaxLength="100" />
+          <Property Name="accronym" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tappSalarySched">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="salaryId" Type="nvarchar" MaxLength="255" />
+          <Property Name="salaryCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="sg" Type="int" />
+          <Property Name="step" Type="int" />
+          <Property Name="rateMonth" Type="money" />
+          <Property Name="rateDay" Type="money" />
+          <Property Name="year" Type="int" />
+          <Property Name="isActive" Type="int" />
+        </EntityType>
+        <EntityType Name="tappSalarySchem">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="paySchemeCode" Type="nvarchar" MaxLength="4" />
+          <Property Name="paySchemeAcronym" Type="nvarchar" MaxLength="3" />
+          <Property Name="paySchemeName" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tAttDailyLog">
+          <Key>
+            <PropertyRef Name="RecNo" />
+          </Key>
+          <Property Name="RecNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EIC" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="LogDate" Type="date" />
+          <Property Name="In1" Type="datetime" />
+          <Property Name="Out1" Type="datetime" />
+          <Property Name="In2" Type="datetime" />
+          <Property Name="Out2" Type="datetime" />
+          <Property Name="LastLog" Type="nvarchar" MaxLength="50" />
+          <Property Name="OverRide1" Type="nvarchar" MaxLength="50" />
+          <Property Name="OverRide2" Type="nvarchar" MaxLength="50" />
+          <Property Name="SchemeCode" Type="nvarchar" MaxLength="25" />
+          <Property Name="nonRegDay" Type="int" />
+        </EntityType>
+        <EntityType Name="tAttDTR">
+          <Key>
+            <PropertyRef Name="DtrID" />
+          </Key>
+          <Property Name="RecNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DtrID" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="EIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Month" Type="int" />
+          <Property Name="Period" Type="int" />
+          <Property Name="Tag" Type="int" />
+          <Property Name="approveEIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="statusID" Type="int" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="dtStamp" Type="datetime" />
+          <Property Name="userEIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="timesTardy" Type="int" />
+          <Property Name="timesUnder" Type="int" />
+          <Property Name="wTotTardy" Type="nvarchar" MaxLength="15" />
+          <Property Name="wTotUnder" Type="nvarchar" MaxLength="15" />
+          <Property Name="timesAWOL" Type="int" />
+          <Property Name="timesPassSlip" Type="int" />
+          <Property Name="Tardy" Type="int" />
+          <Property Name="Undertime" Type="int" />
+          <Property Name="statusName" Type="nvarchar" MaxLength="20" />
+          <Property Name="returnTag" Type="int" />
+        </EntityType>
+        <EntityType Name="tjustifyApp">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CtrlNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="controlNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="approveEIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="EIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="date" Type="date" />
+          <Property Name="logType" Type="int" />
+          <Property Name="time" Type="nvarchar" MaxLength="10" />
+          <Property Name="reason" Type="nvarchar(max)" />
+          <Property Name="statusID" Type="int" />
+          <Property Name="period" Type="int" />
+          <Property Name="dtStamp" Type="datetime" />
+          <Property Name="logTime" Type="datetime" />
+          <Property Name="userEIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="returnTag" Type="int" />
+        </EntityType>
+        <EntityType Name="tpassSlipApp">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="controlNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="EIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="timeOut" Type="datetime" />
+          <Property Name="timeIn" Type="datetime" />
+          <Property Name="destination" Type="nvarchar" MaxLength="150" />
+          <Property Name="purpose" Type="nvarchar" MaxLength="255" />
+          <Property Name="isOfficial" Type="int" />
+          <Property Name="statusID" Type="int" />
+          <Property Name="apprvEIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="SchemeCode" Type="nvarchar" MaxLength="25" />
+          <Property Name="isOfficialprev" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tptlosApp">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="controlNo" Type="nvarchar" MaxLength="25" />
+          <Property Name="dateApplied" Type="datetime" />
+          <Property Name="proceedTo" Type="nvarchar" MaxLength="150" />
+          <Property Name="purpose" Type="nvarchar(max)" />
+          <Property Name="nameText" Type="nvarchar(max)" />
+          <Property Name="departure" Type="datetime" />
+          <Property Name="arrival" Type="datetime" />
+          <Property Name="returnOfficial" Type="datetime" />
+          <Property Name="remarks" Type="nvarchar" MaxLength="150" />
+          <Property Name="recommendEIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="recommendStatus" Type="int" />
+          <Property Name="approveEIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="approvePos" Type="nvarchar" MaxLength="50" />
+          <Property Name="approvedDate" Type="datetime" />
+          <Property Name="approveStatus" Type="int" />
+          <Property Name="isPrintable" Type="int" />
+          <Property Name="facilitatorEIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="userEIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="SchemeCode" Type="nvarchar" MaxLength="25" />
+          <Property Name="GroupCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tag" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HRIS.dbo.vJustifyApp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vJustifyApp">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="int" Nullable="false" />
+          <Property Name="controlNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="EIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="fullnameFirst" Type="nvarchar" MaxLength="60" />
+          <Property Name="date" Type="date" />
+          <Property Name="monthyear" Type="nvarchar" MaxLength="61" />
+          <Property Name="day" Type="int" />
+          <Property Name="logType" Type="int" />
+          <Property Name="logTitle" Type="nvarchar" MaxLength="10" />
+          <Property Name="time" Type="nvarchar" MaxLength="10" />
+          <Property Name="reason" Type="nvarchar(max)" />
+          <Property Name="empGroupCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="officeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="approvingOfficer" Type="nvarchar" MaxLength="60" />
+          <Property Name="period" Type="int" />
+          <Property Name="approveEIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="timeIn1" Type="datetime" />
+          <Property Name="timeOut1" Type="datetime" />
+          <Property Name="timeIn2" Type="datetime" />
+          <Property Name="timeOut2" Type="datetime" />
+          <Property Name="logTime" Type="datetime" />
+          <Property Name="statusID" Type="int" />
+          <Property Name="year" Type="int" />
+          <Property Name="month" Type="int" />
+          <Property Name="returnTag" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HRIS.dbo.vpassSlipApp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vpassSlipApp">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="int" Nullable="false" />
+          <Property Name="controlNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="EIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="Date" Type="varchar" MaxLength="10" />
+          <Property Name="timeOut" Type="datetime" />
+          <Property Name="timeIn" Type="datetime" />
+          <Property Name="destination" Type="nvarchar" MaxLength="150" />
+          <Property Name="purpose" Type="nvarchar" MaxLength="255" />
+          <Property Name="isOfficial" Type="int" />
+          <Property Name="statusID" Type="int" />
+          <Property Name="fullnameFirst" Type="nvarchar" MaxLength="60" />
+          <Property Name="apprvEIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="empGroupCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="In1" Type="datetime" />
+          <Property Name="Out1" Type="datetime" />
+          <Property Name="In2" Type="datetime" />
+          <Property Name="Out2" Type="datetime" />
+          <Property Name="outDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HRIS.dbo.vPtlosApp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vPtlosApp">
+          <Key>
+            <PropertyRef Name="recNo" />
+            <PropertyRef Name="empGroupCode" />
+          </Key>
+          <Property Name="recNo" Type="int" Nullable="false" />
+          <Property Name="controlNo" Type="nvarchar" MaxLength="25" />
+          <Property Name="dateApplied" Type="datetime" />
+          <Property Name="proceedTo" Type="nvarchar" MaxLength="150" />
+          <Property Name="purpose" Type="nvarchar(max)" />
+          <Property Name="nameText" Type="nvarchar(max)" />
+          <Property Name="departure" Type="datetime" />
+          <Property Name="arrival" Type="datetime" />
+          <Property Name="returnOfficial" Type="datetime" />
+          <Property Name="remarks" Type="nvarchar" MaxLength="150" />
+          <Property Name="recommendEIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="approvedDate" Type="datetime" />
+          <Property Name="recommendStatus" Type="int" />
+          <Property Name="approveEIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="approvePos" Type="nvarchar" MaxLength="50" />
+          <Property Name="approveStatus" Type="int" />
+          <Property Name="isPrintable" Type="int" />
+          <Property Name="facilitatorEIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="recomName" Type="nvarchar" MaxLength="60" />
+          <Property Name="aprName" Type="nvarchar" MaxLength="60" />
+          <Property Name="empGroupCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="groupName" Type="nvarchar" MaxLength="100" />
+          <Property Name="officeCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="accronym" Type="nvarchar" MaxLength="10" />
+          <Property Name="officeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="userEIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="Tag" Type="int" />
+        </EntityType>
+        <Function Name="DtrAction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DtrID" Type="nvarchar" Mode="In" />
+          <Parameter Name="txtperiod" Type="nvarchar" Mode="In" />
+          <Parameter Name="Period" Type="int" Mode="In" />
+          <Parameter Name="action" Type="int" Mode="In" />
+          <Parameter Name="actionEIC" Type="nvarchar" Mode="In" />
+          <Parameter Name="remarks" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="JustifyAction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EIC" Type="nvarchar" Mode="In" />
+          <Parameter Name="startDate" Type="date" Mode="In" />
+          <Parameter Name="endDate" Type="date" Mode="In" />
+          <Parameter Name="action" Type="int" Mode="In" />
+          <Parameter Name="actionEIC" Type="nvarchar" Mode="In" />
+          <Parameter Name="CtrlNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="remarks" Type="nvarchar" Mode="In" />
+          <Parameter Name="period" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="HRISModelStoreContainer">
+          <EntitySet Name="tapp212Image" EntityType="Self.tapp212Image" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tappDFlexibles" EntityType="Self.tappDFlexibles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tappDFlexiblesLog" EntityType="Self.tappDFlexiblesLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tappEmployee" EntityType="Self.tappEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tappEmpStatus" EntityType="Self.tappEmpStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tappOffice" EntityType="Self.tappOffice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tappPosition" EntityType="Self.tappPosition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tappPositionSub" EntityType="Self.tappPositionSub" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tappSalarySched" EntityType="Self.tappSalarySched" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tappSalarySchem" EntityType="Self.tappSalarySchem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tAttDailyLog" EntityType="Self.tAttDailyLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tAttDTR" EntityType="Self.tAttDTR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tjustifyApp" EntityType="Self.tjustifyApp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tpassSlipApp" EntityType="Self.tpassSlipApp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tptlosApp" EntityType="Self.tptlosApp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vJustifyApp" EntityType="Self.vJustifyApp" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vJustifyApp].[recNo] AS [recNo], 
+    [vJustifyApp].[controlNo] AS [controlNo], 
+    [vJustifyApp].[EIC] AS [EIC], 
+    [vJustifyApp].[fullnameFirst] AS [fullnameFirst], 
+    [vJustifyApp].[date] AS [date], 
+    [vJustifyApp].[monthyear] AS [monthyear], 
+    [vJustifyApp].[day] AS [day], 
+    [vJustifyApp].[logType] AS [logType], 
+    [vJustifyApp].[logTitle] AS [logTitle], 
+    [vJustifyApp].[time] AS [time], 
+    [vJustifyApp].[reason] AS [reason], 
+    [vJustifyApp].[empGroupCode] AS [empGroupCode], 
+    [vJustifyApp].[officeName] AS [officeName], 
+    [vJustifyApp].[approvingOfficer] AS [approvingOfficer], 
+    [vJustifyApp].[period] AS [period], 
+    [vJustifyApp].[approveEIC] AS [approveEIC], 
+    [vJustifyApp].[timeIn1] AS [timeIn1], 
+    [vJustifyApp].[timeOut1] AS [timeOut1], 
+    [vJustifyApp].[timeIn2] AS [timeIn2], 
+    [vJustifyApp].[timeOut2] AS [timeOut2], 
+    [vJustifyApp].[logTime] AS [logTime], 
+    [vJustifyApp].[statusID] AS [statusID], 
+    [vJustifyApp].[year] AS [year], 
+    [vJustifyApp].[month] AS [month], 
+    [vJustifyApp].[returnTag] AS [returnTag]
+    FROM [dbo].[vJustifyApp] AS [vJustifyApp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vpassSlipApp" EntityType="Self.vpassSlipApp" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vpassSlipApp].[recNo] AS [recNo], 
+    [vpassSlipApp].[controlNo] AS [controlNo], 
+    [vpassSlipApp].[EIC] AS [EIC], 
+    [vpassSlipApp].[Date] AS [Date], 
+    [vpassSlipApp].[timeOut] AS [timeOut], 
+    [vpassSlipApp].[timeIn] AS [timeIn], 
+    [vpassSlipApp].[destination] AS [destination], 
+    [vpassSlipApp].[purpose] AS [purpose], 
+    [vpassSlipApp].[isOfficial] AS [isOfficial], 
+    [vpassSlipApp].[statusID] AS [statusID], 
+    [vpassSlipApp].[fullnameFirst] AS [fullnameFirst], 
+    [vpassSlipApp].[apprvEIC] AS [apprvEIC], 
+    [vpassSlipApp].[empGroupCode] AS [empGroupCode], 
+    [vpassSlipApp].[In1] AS [In1], 
+    [vpassSlipApp].[Out1] AS [Out1], 
+    [vpassSlipApp].[In2] AS [In2], 
+    [vpassSlipApp].[Out2] AS [Out2], 
+    [vpassSlipApp].[outDate] AS [outDate]
+    FROM [dbo].[vpassSlipApp] AS [vpassSlipApp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vPtlosApp" EntityType="Self.vPtlosApp" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vPtlosApp].[recNo] AS [recNo], 
+    [vPtlosApp].[controlNo] AS [controlNo], 
+    [vPtlosApp].[dateApplied] AS [dateApplied], 
+    [vPtlosApp].[proceedTo] AS [proceedTo], 
+    [vPtlosApp].[purpose] AS [purpose], 
+    [vPtlosApp].[nameText] AS [nameText], 
+    [vPtlosApp].[departure] AS [departure], 
+    [vPtlosApp].[arrival] AS [arrival], 
+    [vPtlosApp].[returnOfficial] AS [returnOfficial], 
+    [vPtlosApp].[remarks] AS [remarks], 
+    [vPtlosApp].[recommendEIC] AS [recommendEIC], 
+    [vPtlosApp].[approvedDate] AS [approvedDate], 
+    [vPtlosApp].[recommendStatus] AS [recommendStatus], 
+    [vPtlosApp].[approveEIC] AS [approveEIC], 
+    [vPtlosApp].[approvePos] AS [approvePos], 
+    [vPtlosApp].[approveStatus] AS [approveStatus], 
+    [vPtlosApp].[isPrintable] AS [isPrintable], 
+    [vPtlosApp].[facilitatorEIC] AS [facilitatorEIC], 
+    [vPtlosApp].[recomName] AS [recomName], 
+    [vPtlosApp].[aprName] AS [aprName], 
+    [vPtlosApp].[empGroupCode] AS [empGroupCode], 
+    [vPtlosApp].[groupName] AS [groupName], 
+    [vPtlosApp].[officeCode] AS [officeCode], 
+    [vPtlosApp].[accronym] AS [accronym], 
+    [vPtlosApp].[officeName] AS [officeName], 
+    [vPtlosApp].[userEIC] AS [userEIC], 
+    [vPtlosApp].[Tag] AS [Tag]
+    FROM [dbo].[vPtlosApp] AS [vPtlosApp]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRISModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tjustifyApp">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CtrlNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="controlNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="approveEIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="logType" Type="Int32" />
+          <Property Name="time" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="statusID" Type="Int32" />
+          <Property Name="period" Type="Int32" />
+          <Property Name="dtStamp" Type="DateTime" Precision="3" />
+          <Property Name="logTime" Type="DateTime" Precision="3" />
+          <Property Name="userEIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="returnTag" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="HRISEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tjustifyApps" EntityType="Self.tjustifyApp" />
+          <EntitySet Name="tapp212Image" EntityType="HRISModel.tapp212Image" />
+          <EntitySet Name="tappEmployees" EntityType="HRISModel.tappEmployee" />
+          <EntitySet Name="tAttDailyLogs" EntityType="HRISModel.tAttDailyLog" />
+          <EntitySet Name="tAttDTRs" EntityType="HRISModel.tAttDTR" />
+          <EntitySet Name="vPtlosApps" EntityType="HRISModel.vPtlosApp" />
+          <EntitySet Name="tptlosApps" EntityType="HRISModel.tptlosApp" />
+          <EntitySet Name="tpassSlipApps" EntityType="HRISModel.tpassSlipApp" />
+          <EntitySet Name="vpassSlipApps" EntityType="HRISModel.vpassSlipApp" />
+          <EntitySet Name="vJustifyApps" EntityType="HRISModel.vJustifyApp" />
+          <FunctionImport Name="DtrAction" ReturnType="Collection(String)">
+            <Parameter Name="DtrID" Mode="In" Type="String" />
+            <Parameter Name="txtperiod" Mode="In" Type="String" />
+            <Parameter Name="Period" Mode="In" Type="Int32" />
+            <Parameter Name="action" Mode="In" Type="Int32" />
+            <Parameter Name="actionEIC" Mode="In" Type="String" />
+            <Parameter Name="remarks" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="JustifyAction" ReturnType="Collection(String)">
+            <Parameter Name="EIC" Mode="In" Type="String" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+            <Parameter Name="action" Mode="In" Type="Int32" />
+            <Parameter Name="actionEIC" Mode="In" Type="String" />
+            <Parameter Name="CtrlNo" Mode="In" Type="String" />
+            <Parameter Name="remarks" Mode="In" Type="String" />
+            <Parameter Name="period" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="tappDFlexibles" EntityType="HRISModel.tappDFlexible" />
+          <EntitySet Name="tappDFlexiblesLogs" EntityType="HRISModel.tappDFlexiblesLog" />
+          <EntitySet Name="tappSalaryScheds" EntityType="HRISModel.tappSalarySched" />
+          <EntitySet Name="tappSalarySchems" EntityType="HRISModel.tappSalarySchem" />
+          <EntitySet Name="tappEmpStatus" EntityType="HRISModel.tappEmpStatu" />
+          <EntitySet Name="tappOffices" EntityType="HRISModel.tappOffice" />
+          <EntitySet Name="tappPositions" EntityType="HRISModel.tappPosition" />
+          <EntitySet Name="tappPositionSubs" EntityType="HRISModel.tappPositionSub" />
+        </EntityContainer>
+        <EntityType Name="tapp212Image">
+          <Key>
+            <PropertyRef Name="RecNo" />
+          </Key>
+          <Property Name="RecNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="imageData" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tappEmployee">
+          <Key>
+            <PropertyRef Name="EIC" />
+          </Key>
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idNo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="EIC" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="middleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="extName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="birthdate" Type="DateTime" Precision="0" />
+          <Property Name="birthplace" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="fullnameFirst" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="fullnameLast" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="Int32" />
+          <Property Name="prefixTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sufixTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tAttDailyLog">
+          <Key>
+            <PropertyRef Name="RecNo" />
+          </Key>
+          <Property Name="RecNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LogDate" Type="DateTime" Precision="0" />
+          <Property Name="In1" Type="DateTime" Precision="3" />
+          <Property Name="Out1" Type="DateTime" Precision="3" />
+          <Property Name="In2" Type="DateTime" Precision="3" />
+          <Property Name="Out2" Type="DateTime" Precision="3" />
+          <Property Name="LastLog" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OverRide1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OverRide2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SchemeCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="nonRegDay" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tAttDTR">
+          <Key>
+            <PropertyRef Name="DtrID" />
+          </Key>
+          <Property Name="RecNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DtrID" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="EIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="Period" Type="Int32" />
+          <Property Name="Tag" Type="Int32" />
+          <Property Name="approveEIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="statusID" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="dtStamp" Type="DateTime" Precision="3" />
+          <Property Name="userEIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="timesTardy" Type="Int32" />
+          <Property Name="timesUnder" Type="Int32" />
+          <Property Name="wTotTardy" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="wTotUnder" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="timesAWOL" Type="Int32" />
+          <Property Name="timesPassSlip" Type="Int32" />
+          <Property Name="Tardy" Type="Int32" />
+          <Property Name="Undertime" Type="Int32" />
+          <Property Name="statusName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="returnTag" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vPtlosApp">
+          <Key>
+            <PropertyRef Name="recNo" />
+            <PropertyRef Name="empGroupCode" />
+          </Key>
+          <Property Name="recNo" Type="Int32" Nullable="false" />
+          <Property Name="controlNo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="dateApplied" Type="DateTime" Precision="3" />
+          <Property Name="proceedTo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="purpose" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nameText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="departure" Type="DateTime" Precision="3" />
+          <Property Name="arrival" Type="DateTime" Precision="3" />
+          <Property Name="returnOfficial" Type="DateTime" Precision="3" />
+          <Property Name="remarks" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="recommendEIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="approvedDate" Type="DateTime" Precision="3" />
+          <Property Name="recommendStatus" Type="Int32" />
+          <Property Name="approveEIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="approvePos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="approveStatus" Type="Int32" />
+          <Property Name="isPrintable" Type="Int32" />
+          <Property Name="facilitatorEIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="recomName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="aprName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="empGroupCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="groupName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="officeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="accronym" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="officeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="userEIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Tag" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tptlosApp">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="controlNo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="dateApplied" Type="DateTime" Precision="3" />
+          <Property Name="proceedTo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="purpose" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nameText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="departure" Type="DateTime" Precision="3" />
+          <Property Name="arrival" Type="DateTime" Precision="3" />
+          <Property Name="returnOfficial" Type="DateTime" Precision="3" />
+          <Property Name="remarks" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="recommendEIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="recommendStatus" Type="Int32" />
+          <Property Name="approveEIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="approvePos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="approvedDate" Type="DateTime" Precision="3" />
+          <Property Name="approveStatus" Type="Int32" />
+          <Property Name="isPrintable" Type="Int32" />
+          <Property Name="facilitatorEIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="userEIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SchemeCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="GroupCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tag" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tpassSlipApp">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="controlNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="timeOut" Type="DateTime" Precision="3" />
+          <Property Name="timeIn" Type="DateTime" Precision="3" />
+          <Property Name="destination" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="purpose" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="isOfficial" Type="Int32" />
+          <Property Name="statusID" Type="Int32" />
+          <Property Name="apprvEIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SchemeCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="isOfficialprev" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vpassSlipApp">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="Int32" Nullable="false" />
+          <Property Name="controlNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="timeOut" Type="DateTime" Precision="3" />
+          <Property Name="timeIn" Type="DateTime" Precision="3" />
+          <Property Name="destination" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="purpose" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="isOfficial" Type="Int32" />
+          <Property Name="statusID" Type="Int32" />
+          <Property Name="fullnameFirst" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="apprvEIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="empGroupCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="In1" Type="DateTime" Precision="3" />
+          <Property Name="Out1" Type="DateTime" Precision="3" />
+          <Property Name="In2" Type="DateTime" Precision="3" />
+          <Property Name="Out2" Type="DateTime" Precision="3" />
+          <Property Name="outDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="vJustifyApp">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="Int32" Nullable="false" />
+          <Property Name="controlNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="fullnameFirst" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="monthyear" Type="String" MaxLength="61" FixedLength="false" Unicode="true" />
+          <Property Name="day" Type="Int32" />
+          <Property Name="logType" Type="Int32" />
+          <Property Name="logTitle" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="time" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="empGroupCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="officeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="approvingOfficer" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="period" Type="Int32" />
+          <Property Name="approveEIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="timeIn1" Type="DateTime" Precision="3" />
+          <Property Name="timeOut1" Type="DateTime" Precision="3" />
+          <Property Name="timeIn2" Type="DateTime" Precision="3" />
+          <Property Name="timeOut2" Type="DateTime" Precision="3" />
+          <Property Name="logTime" Type="DateTime" Precision="3" />
+          <Property Name="statusID" Type="Int32" />
+          <Property Name="year" Type="Int32" />
+          <Property Name="month" Type="Int32" />
+          <Property Name="returnTag" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tappDFlexible">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="EIC" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EIC" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tappDFlexiblesLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EIC" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="loginStatus" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="timeStamp" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tappSalarySched">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="salaryId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="salaryCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="sg" Type="Int32" />
+          <Property Name="step" Type="Int32" />
+          <Property Name="rateMonth" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="rateDay" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="year" Type="Int32" />
+          <Property Name="isActive" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tappSalarySchem">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="paySchemeCode" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="paySchemeAcronym" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="paySchemeName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tappEmpStatu">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="statusCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="statusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="groupID" Type="Int32" />
+          <Property Name="isGovService" Type="Int32" />
+          <Property Name="isPlantilla" Type="Int32" />
+          <Property Name="class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tappOffice">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="officeCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="officeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="accronym" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="officeServiceRec" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="branch" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="sortTag" Type="Int32" />
+          <Property Name="tagRemarks" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tappPosition">
+          <Key>
+            <PropertyRef Name="positionCode" />
+          </Key>
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="positionCode" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="fullDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="shortDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="accronym" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sg" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tappPositionSub">
+          <Key>
+            <PropertyRef Name="subPositionCode" />
+          </Key>
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subPositionCode" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="positionCode" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="subPositionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="shortPositionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="accronym" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HRISModelStoreContainer" CdmEntityContainer="HRISEntities">
+          <EntitySetMapping Name="tjustifyApps">
+            <EntityTypeMapping TypeName="HRISModel.tjustifyApp">
+              <MappingFragment StoreEntitySet="tjustifyApp">
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+                <ScalarProperty Name="CtrlNo" ColumnName="CtrlNo" />
+                <ScalarProperty Name="controlNo" ColumnName="controlNo" />
+                <ScalarProperty Name="approveEIC" ColumnName="approveEIC" />
+                <ScalarProperty Name="EIC" ColumnName="EIC" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="logType" ColumnName="logType" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="reason" ColumnName="reason" />
+                <ScalarProperty Name="statusID" ColumnName="statusID" />
+                <ScalarProperty Name="period" ColumnName="period" />
+                <ScalarProperty Name="dtStamp" ColumnName="dtStamp" />
+                <ScalarProperty Name="logTime" ColumnName="logTime" />
+                <ScalarProperty Name="userEIC" ColumnName="userEIC" />
+                <ScalarProperty Name="returnTag" ColumnName="returnTag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tapp212Image">
+            <EntityTypeMapping TypeName="HRISModel.tapp212Image">
+              <MappingFragment StoreEntitySet="tapp212Image">
+                <ScalarProperty Name="imageData" ColumnName="imageData" />
+                <ScalarProperty Name="EIC" ColumnName="EIC" />
+                <ScalarProperty Name="RecNo" ColumnName="RecNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tappEmployees">
+            <EntityTypeMapping TypeName="HRISModel.tappEmployee">
+              <MappingFragment StoreEntitySet="tappEmployee">
+                <ScalarProperty Name="sufixTitle" ColumnName="sufixTitle" />
+                <ScalarProperty Name="prefixTitle" ColumnName="prefixTitle" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="fullnameLast" ColumnName="fullnameLast" />
+                <ScalarProperty Name="fullnameFirst" ColumnName="fullnameFirst" />
+                <ScalarProperty Name="birthplace" ColumnName="birthplace" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="extName" ColumnName="extName" />
+                <ScalarProperty Name="middleName" ColumnName="middleName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="EIC" ColumnName="EIC" />
+                <ScalarProperty Name="idNo" ColumnName="idNo" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tAttDailyLogs">
+            <EntityTypeMapping TypeName="HRISModel.tAttDailyLog">
+              <MappingFragment StoreEntitySet="tAttDailyLog">
+                <ScalarProperty Name="nonRegDay" ColumnName="nonRegDay" />
+                <ScalarProperty Name="SchemeCode" ColumnName="SchemeCode" />
+                <ScalarProperty Name="OverRide2" ColumnName="OverRide2" />
+                <ScalarProperty Name="OverRide1" ColumnName="OverRide1" />
+                <ScalarProperty Name="LastLog" ColumnName="LastLog" />
+                <ScalarProperty Name="Out2" ColumnName="Out2" />
+                <ScalarProperty Name="In2" ColumnName="In2" />
+                <ScalarProperty Name="Out1" ColumnName="Out1" />
+                <ScalarProperty Name="In1" ColumnName="In1" />
+                <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EIC" ColumnName="EIC" />
+                <ScalarProperty Name="RecNo" ColumnName="RecNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tAttDTRs">
+            <EntityTypeMapping TypeName="HRISModel.tAttDTR">
+              <MappingFragment StoreEntitySet="tAttDTR">
+                <ScalarProperty Name="returnTag" ColumnName="returnTag" />
+                <ScalarProperty Name="statusName" ColumnName="statusName" />
+                <ScalarProperty Name="Undertime" ColumnName="Undertime" />
+                <ScalarProperty Name="Tardy" ColumnName="Tardy" />
+                <ScalarProperty Name="timesPassSlip" ColumnName="timesPassSlip" />
+                <ScalarProperty Name="timesAWOL" ColumnName="timesAWOL" />
+                <ScalarProperty Name="wTotUnder" ColumnName="wTotUnder" />
+                <ScalarProperty Name="wTotTardy" ColumnName="wTotTardy" />
+                <ScalarProperty Name="timesUnder" ColumnName="timesUnder" />
+                <ScalarProperty Name="timesTardy" ColumnName="timesTardy" />
+                <ScalarProperty Name="userEIC" ColumnName="userEIC" />
+                <ScalarProperty Name="dtStamp" ColumnName="dtStamp" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="statusID" ColumnName="statusID" />
+                <ScalarProperty Name="approveEIC" ColumnName="approveEIC" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="EIC" ColumnName="EIC" />
+                <ScalarProperty Name="DtrID" ColumnName="DtrID" />
+                <ScalarProperty Name="RecNo" ColumnName="RecNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vPtlosApps">
+            <EntityTypeMapping TypeName="HRISModel.vPtlosApp">
+              <MappingFragment StoreEntitySet="vPtlosApp">
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="userEIC" ColumnName="userEIC" />
+                <ScalarProperty Name="officeName" ColumnName="officeName" />
+                <ScalarProperty Name="accronym" ColumnName="accronym" />
+                <ScalarProperty Name="officeCode" ColumnName="officeCode" />
+                <ScalarProperty Name="groupName" ColumnName="groupName" />
+                <ScalarProperty Name="empGroupCode" ColumnName="empGroupCode" />
+                <ScalarProperty Name="aprName" ColumnName="aprName" />
+                <ScalarProperty Name="recomName" ColumnName="recomName" />
+                <ScalarProperty Name="facilitatorEIC" ColumnName="facilitatorEIC" />
+                <ScalarProperty Name="isPrintable" ColumnName="isPrintable" />
+                <ScalarProperty Name="approveStatus" ColumnName="approveStatus" />
+                <ScalarProperty Name="approvePos" ColumnName="approvePos" />
+                <ScalarProperty Name="approveEIC" ColumnName="approveEIC" />
+                <ScalarProperty Name="recommendStatus" ColumnName="recommendStatus" />
+                <ScalarProperty Name="approvedDate" ColumnName="approvedDate" />
+                <ScalarProperty Name="recommendEIC" ColumnName="recommendEIC" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="returnOfficial" ColumnName="returnOfficial" />
+                <ScalarProperty Name="arrival" ColumnName="arrival" />
+                <ScalarProperty Name="departure" ColumnName="departure" />
+                <ScalarProperty Name="nameText" ColumnName="nameText" />
+                <ScalarProperty Name="purpose" ColumnName="purpose" />
+                <ScalarProperty Name="proceedTo" ColumnName="proceedTo" />
+                <ScalarProperty Name="dateApplied" ColumnName="dateApplied" />
+                <ScalarProperty Name="controlNo" ColumnName="controlNo" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tptlosApps">
+            <EntityTypeMapping TypeName="HRISModel.tptlosApp">
+              <MappingFragment StoreEntitySet="tptlosApp">
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="GroupCode" ColumnName="GroupCode" />
+                <ScalarProperty Name="SchemeCode" ColumnName="SchemeCode" />
+                <ScalarProperty Name="userEIC" ColumnName="userEIC" />
+                <ScalarProperty Name="facilitatorEIC" ColumnName="facilitatorEIC" />
+                <ScalarProperty Name="isPrintable" ColumnName="isPrintable" />
+                <ScalarProperty Name="approveStatus" ColumnName="approveStatus" />
+                <ScalarProperty Name="approvedDate" ColumnName="approvedDate" />
+                <ScalarProperty Name="approvePos" ColumnName="approvePos" />
+                <ScalarProperty Name="approveEIC" ColumnName="approveEIC" />
+                <ScalarProperty Name="recommendStatus" ColumnName="recommendStatus" />
+                <ScalarProperty Name="recommendEIC" ColumnName="recommendEIC" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="returnOfficial" ColumnName="returnOfficial" />
+                <ScalarProperty Name="arrival" ColumnName="arrival" />
+                <ScalarProperty Name="departure" ColumnName="departure" />
+                <ScalarProperty Name="nameText" ColumnName="nameText" />
+                <ScalarProperty Name="purpose" ColumnName="purpose" />
+                <ScalarProperty Name="proceedTo" ColumnName="proceedTo" />
+                <ScalarProperty Name="dateApplied" ColumnName="dateApplied" />
+                <ScalarProperty Name="controlNo" ColumnName="controlNo" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tpassSlipApps">
+            <EntityTypeMapping TypeName="HRISModel.tpassSlipApp">
+              <MappingFragment StoreEntitySet="tpassSlipApp">
+                <ScalarProperty Name="isOfficialprev" ColumnName="isOfficialprev" />
+                <ScalarProperty Name="SchemeCode" ColumnName="SchemeCode" />
+                <ScalarProperty Name="apprvEIC" ColumnName="apprvEIC" />
+                <ScalarProperty Name="statusID" ColumnName="statusID" />
+                <ScalarProperty Name="isOfficial" ColumnName="isOfficial" />
+                <ScalarProperty Name="purpose" ColumnName="purpose" />
+                <ScalarProperty Name="destination" ColumnName="destination" />
+                <ScalarProperty Name="timeIn" ColumnName="timeIn" />
+                <ScalarProperty Name="timeOut" ColumnName="timeOut" />
+                <ScalarProperty Name="EIC" ColumnName="EIC" />
+                <ScalarProperty Name="controlNo" ColumnName="controlNo" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vpassSlipApps">
+            <EntityTypeMapping TypeName="HRISModel.vpassSlipApp">
+              <MappingFragment StoreEntitySet="vpassSlipApp">
+                <ScalarProperty Name="outDate" ColumnName="outDate" />
+                <ScalarProperty Name="Out2" ColumnName="Out2" />
+                <ScalarProperty Name="In2" ColumnName="In2" />
+                <ScalarProperty Name="Out1" ColumnName="Out1" />
+                <ScalarProperty Name="In1" ColumnName="In1" />
+                <ScalarProperty Name="empGroupCode" ColumnName="empGroupCode" />
+                <ScalarProperty Name="apprvEIC" ColumnName="apprvEIC" />
+                <ScalarProperty Name="fullnameFirst" ColumnName="fullnameFirst" />
+                <ScalarProperty Name="statusID" ColumnName="statusID" />
+                <ScalarProperty Name="isOfficial" ColumnName="isOfficial" />
+                <ScalarProperty Name="purpose" ColumnName="purpose" />
+                <ScalarProperty Name="destination" ColumnName="destination" />
+                <ScalarProperty Name="timeIn" ColumnName="timeIn" />
+                <ScalarProperty Name="timeOut" ColumnName="timeOut" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EIC" ColumnName="EIC" />
+                <ScalarProperty Name="controlNo" ColumnName="controlNo" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vJustifyApps">
+            <EntityTypeMapping TypeName="HRISModel.vJustifyApp">
+              <MappingFragment StoreEntitySet="vJustifyApp">
+                <ScalarProperty Name="returnTag" ColumnName="returnTag" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="statusID" ColumnName="statusID" />
+                <ScalarProperty Name="logTime" ColumnName="logTime" />
+                <ScalarProperty Name="timeOut2" ColumnName="timeOut2" />
+                <ScalarProperty Name="timeIn2" ColumnName="timeIn2" />
+                <ScalarProperty Name="timeOut1" ColumnName="timeOut1" />
+                <ScalarProperty Name="timeIn1" ColumnName="timeIn1" />
+                <ScalarProperty Name="approveEIC" ColumnName="approveEIC" />
+                <ScalarProperty Name="period" ColumnName="period" />
+                <ScalarProperty Name="approvingOfficer" ColumnName="approvingOfficer" />
+                <ScalarProperty Name="officeName" ColumnName="officeName" />
+                <ScalarProperty Name="empGroupCode" ColumnName="empGroupCode" />
+                <ScalarProperty Name="reason" ColumnName="reason" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="logTitle" ColumnName="logTitle" />
+                <ScalarProperty Name="logType" ColumnName="logType" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="monthyear" ColumnName="monthyear" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="fullnameFirst" ColumnName="fullnameFirst" />
+                <ScalarProperty Name="EIC" ColumnName="EIC" />
+                <ScalarProperty Name="controlNo" ColumnName="controlNo" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DtrAction" FunctionName="HRISModel.Store.DtrAction" />
+          <FunctionImportMapping FunctionImportName="JustifyAction" FunctionName="HRISModel.Store.JustifyAction" />
+          <EntitySetMapping Name="tappDFlexibles">
+            <EntityTypeMapping TypeName="HRISModel.tappDFlexible">
+              <MappingFragment StoreEntitySet="tappDFlexibles">
+                <ScalarProperty Name="EIC" ColumnName="EIC" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tappDFlexiblesLogs">
+            <EntityTypeMapping TypeName="HRISModel.tappDFlexiblesLog">
+              <MappingFragment StoreEntitySet="tappDFlexiblesLog">
+                <ScalarProperty Name="timeStamp" ColumnName="timeStamp" />
+                <ScalarProperty Name="loginStatus" ColumnName="loginStatus" />
+                <ScalarProperty Name="EIC" ColumnName="EIC" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tappSalaryScheds">
+            <EntityTypeMapping TypeName="HRISModel.tappSalarySched">
+              <MappingFragment StoreEntitySet="tappSalarySched">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="rateDay" ColumnName="rateDay" />
+                <ScalarProperty Name="rateMonth" ColumnName="rateMonth" />
+                <ScalarProperty Name="step" ColumnName="step" />
+                <ScalarProperty Name="sg" ColumnName="sg" />
+                <ScalarProperty Name="salaryCode" ColumnName="salaryCode" />
+                <ScalarProperty Name="salaryId" ColumnName="salaryId" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tappSalarySchems">
+            <EntityTypeMapping TypeName="HRISModel.tappSalarySchem">
+              <MappingFragment StoreEntitySet="tappSalarySchem">
+                <ScalarProperty Name="paySchemeName" ColumnName="paySchemeName" />
+                <ScalarProperty Name="paySchemeAcronym" ColumnName="paySchemeAcronym" />
+                <ScalarProperty Name="paySchemeCode" ColumnName="paySchemeCode" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tappEmpStatus">
+            <EntityTypeMapping TypeName="HRISModel.tappEmpStatu">
+              <MappingFragment StoreEntitySet="tappEmpStatus">
+                <ScalarProperty Name="class" ColumnName="class" />
+                <ScalarProperty Name="isPlantilla" ColumnName="isPlantilla" />
+                <ScalarProperty Name="isGovService" ColumnName="isGovService" />
+                <ScalarProperty Name="groupID" ColumnName="groupID" />
+                <ScalarProperty Name="statusName" ColumnName="statusName" />
+                <ScalarProperty Name="statusCode" ColumnName="statusCode" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tappOffices">
+            <EntityTypeMapping TypeName="HRISModel.tappOffice">
+              <MappingFragment StoreEntitySet="tappOffice">
+                <ScalarProperty Name="tagRemarks" ColumnName="tagRemarks" />
+                <ScalarProperty Name="sortTag" ColumnName="sortTag" />
+                <ScalarProperty Name="branch" ColumnName="branch" />
+                <ScalarProperty Name="officeServiceRec" ColumnName="officeServiceRec" />
+                <ScalarProperty Name="accronym" ColumnName="accronym" />
+                <ScalarProperty Name="officeName" ColumnName="officeName" />
+                <ScalarProperty Name="officeCode" ColumnName="officeCode" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tappPositions">
+            <EntityTypeMapping TypeName="HRISModel.tappPosition">
+              <MappingFragment StoreEntitySet="tappPosition">
+                <ScalarProperty Name="sg" ColumnName="sg" />
+                <ScalarProperty Name="accronym" ColumnName="accronym" />
+                <ScalarProperty Name="shortDescription" ColumnName="shortDescription" />
+                <ScalarProperty Name="fullDescription" ColumnName="fullDescription" />
+                <ScalarProperty Name="positionCode" ColumnName="positionCode" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tappPositionSubs">
+            <EntityTypeMapping TypeName="HRISModel.tappPositionSub">
+              <MappingFragment StoreEntitySet="tappPositionSub">
+                <ScalarProperty Name="accronym" ColumnName="accronym" />
+                <ScalarProperty Name="shortPositionName" ColumnName="shortPositionName" />
+                <ScalarProperty Name="subPositionName" ColumnName="subPositionName" />
+                <ScalarProperty Name="positionCode" ColumnName="positionCode" />
+                <ScalarProperty Name="subPositionCode" ColumnName="subPositionCode" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
