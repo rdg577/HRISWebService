@@ -46,6 +46,36 @@ namespace HRISWebService.Controllers
             dynamic wrap = new { ptlos_detail = list };
             return Json(wrap, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult PTLOSDetail2(String approvingEIC)
+        {
+            var list = (from r in db.tptlosApps
+                        where r.approveEIC == approvingEIC
+                        where r.recommendStatus == 1
+                        where r.Tag == 3
+                        select new
+                        {
+                            r.recNo,
+                            name = r.nameText,
+                            destination = r.proceedTo.Trim(),
+                            purpose = r.purpose.Trim(),
+                            date_applied = r.dateApplied.ToString(),
+                            departure = r.departure.ToString(),
+                            arrival = r.arrival.ToString(),
+                            official_return = r.returnOfficial.ToString()
+                            /*,
+                            applicants = (from s in db.vPtlosNames
+                                          group s by new
+                                          {
+                                              s.controlNo,
+                                              s.EIC,
+                                              s.designation
+                                          } into gs
+                                        where gs.Key.controlNo == r.controlNo
+                                        select  gs.Key).ToList()*/
+                        });
+            dynamic wrap = new { ptlos_detail = list };
+            return Json(wrap, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult PTLOSApproval(int id, int tag)
         {
             try

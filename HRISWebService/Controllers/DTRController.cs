@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HRISWebService.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace HRISWebService.Controllers
 {
@@ -31,35 +32,56 @@ namespace HRISWebService.Controllers
             return Json(wrap, JsonRequestBehavior.AllowGet);
 
         }
+
         public JsonResult DTRReturnRequest(String approvingEIC)
         {
             /**
              * Returns a list of Employee that requests return of their DTRs
              */
             var list = (from r in db.tAttDTRs
-                        group r by new
-                        {
-                            r.EIC,
-                            r.approveEIC,
-                            fullnameFirst = (from s in db.tappEmployees where s.EIC == r.EIC select s.fullnameFirst).FirstOrDefault().ToString().Trim(),
-                            r.returnTag,
-                            total = (from y in db.tAttDTRs
-                                     where y.EIC == r.EIC
-                                     where y.approveEIC == r.approveEIC
-                                     where y.returnTag == 1
-                                     select y).Count()
-                        } into g
-                        orderby g.Key.fullnameFirst
-                        where g.Key.approveEIC == approvingEIC
-                        where g.Key.returnTag == 1
-                        select new
-                        {
-                            g.Key.EIC,
-                            g.Key.approveEIC,
-                            g.Key.fullnameFirst,
-                            g.Key.total,
-                            g.Key.returnTag
-                        });
+                group r by new
+                {
+                    r.DtrID,
+                    r.EIC,
+                    r.Year,
+                    r.Month,
+                    r.Period,
+                    r.approveEIC,
+                    r.Remarks,
+                    fullnameFirst =
+                        (from s in db.tappEmployees where s.EIC == r.EIC select s.fullnameFirst).FirstOrDefault()
+                            .ToString()
+                            .Trim(),
+                    r.returnTag,
+                    total = (from y in db.tAttDTRs
+                        where y.EIC == r.EIC
+                        where y.approveEIC == r.approveEIC
+                        where y.returnTag == 1
+                        select y).Count()
+                }
+                into g
+                orderby g.Key.fullnameFirst
+                where g.Key.approveEIC == approvingEIC
+                where g.Key.returnTag == 1
+                select new
+                {
+                    g.Key.DtrID,
+                    g.Key.EIC,
+                    g.Key.Year,
+                    g.Key.Month,
+                    g.Key.Period,
+                    g.Key.approveEIC,
+                    g.Key.Remarks,
+                    g.Key.fullnameFirst,
+                    g.Key.total,
+                    details = (from s in db.tAttDTRs
+                               orderby s.Remarks
+                                   where s.EIC == g.Key.EIC
+                                   where s.approveEIC == g.Key.approveEIC
+                                   where s.returnTag == 1
+                                   select s)
+                });
+            // .DistinctBy(t => t.EIC);
 
             dynamic wrap = new { dtrs = list };
             return Json(wrap, JsonRequestBehavior.AllowGet);

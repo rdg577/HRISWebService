@@ -189,6 +189,9 @@
     <Compile Include="Models\tptlosApp.cs">
       <DependentUpon>HRIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tptlosName.cs">
+      <DependentUpon>HRIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\vJustifyApp.cs">
       <DependentUpon>HRIS.tt</DependentUpon>
     </Compile>
@@ -196,6 +199,9 @@
       <DependentUpon>HRIS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vPtlosApp.cs">
+      <DependentUpon>HRIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vPtlosName.cs">
       <DependentUpon>HRIS.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -238,7 +244,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

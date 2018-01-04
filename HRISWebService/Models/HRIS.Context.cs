@@ -45,6 +45,8 @@ namespace HRISWebService.Models
         public virtual DbSet<tappOffice> tappOffices { get; set; }
         public virtual DbSet<tappPosition> tappPositions { get; set; }
         public virtual DbSet<tappPositionSub> tappPositionSubs { get; set; }
+        public virtual DbSet<tptlosName> tptlosNames { get; set; }
+        public virtual DbSet<vPtlosName> vPtlosNames { get; set; }
     
         public virtual ObjectResult<string> DtrAction(string dtrID, string txtperiod, Nullable<int> period, Nullable<int> action, string actionEIC, string remarks)
         {

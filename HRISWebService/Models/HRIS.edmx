@@ -228,6 +228,17 @@
           <Property Name="GroupCode" Type="nvarchar" MaxLength="50" />
           <Property Name="Tag" Type="int" />
         </EntityType>
+        <EntityType Name="tptlosName">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="controlNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="EIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="designation" Type="nvarchar" MaxLength="100" />
+          <Property Name="statusID" Type="int" />
+          <Property Name="SchemeCode" Type="nvarchar" MaxLength="25" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'HRIS.dbo.vJustifyApp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vJustifyApp">
@@ -320,6 +331,19 @@ warning 6002: The table/view 'HRIS.dbo.vPtlosApp' does not have a primary key de
           <Property Name="userEIC" Type="nvarchar" MaxLength="20" />
           <Property Name="Tag" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HRIS.dbo.vPtlosName' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vPtlosName">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="int" Nullable="false" />
+          <Property Name="controlNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="EIC" Type="nvarchar" MaxLength="20" />
+          <Property Name="statusID" Type="int" />
+          <Property Name="fullnameFirst" Type="nvarchar" MaxLength="60" />
+          <Property Name="designation" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <Function Name="DtrAction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="DtrID" Type="nvarchar" Mode="In" />
           <Parameter Name="txtperiod" Type="nvarchar" Mode="In" />
@@ -354,6 +378,7 @@ warning 6002: The table/view 'HRIS.dbo.vPtlosApp' does not have a primary key de
           <EntitySet Name="tjustifyApp" EntityType="Self.tjustifyApp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tpassSlipApp" EntityType="Self.tpassSlipApp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tptlosApp" EntityType="Self.tptlosApp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tptlosName" EntityType="Self.tptlosName" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vJustifyApp" EntityType="Self.vJustifyApp" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vJustifyApp].[recNo] AS [recNo], 
@@ -436,6 +461,16 @@ warning 6002: The table/view 'HRIS.dbo.vPtlosApp' does not have a primary key de
     [vPtlosApp].[Tag] AS [Tag]
     FROM [dbo].[vPtlosApp] AS [vPtlosApp]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="vPtlosName" EntityType="Self.vPtlosName" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vPtlosName].[recNo] AS [recNo], 
+    [vPtlosName].[controlNo] AS [controlNo], 
+    [vPtlosName].[EIC] AS [EIC], 
+    [vPtlosName].[statusID] AS [statusID], 
+    [vPtlosName].[fullnameFirst] AS [fullnameFirst], 
+    [vPtlosName].[designation] AS [designation]
+    FROM [dbo].[vPtlosName] AS [vPtlosName]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -498,6 +533,8 @@ warning 6002: The table/view 'HRIS.dbo.vPtlosApp' does not have a primary key de
           <EntitySet Name="tappOffices" EntityType="HRISModel.tappOffice" />
           <EntitySet Name="tappPositions" EntityType="HRISModel.tappPosition" />
           <EntitySet Name="tappPositionSubs" EntityType="HRISModel.tappPositionSub" />
+          <EntitySet Name="tptlosNames" EntityType="HRISModel.tptlosName" />
+          <EntitySet Name="vPtlosNames" EntityType="HRISModel.vPtlosName" />
         </EntityContainer>
         <EntityType Name="tapp212Image">
           <Key>
@@ -787,6 +824,28 @@ warning 6002: The table/view 'HRIS.dbo.vPtlosApp' does not have a primary key de
           <Property Name="subPositionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="shortPositionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="accronym" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tptlosName">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="controlNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="designation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="statusID" Type="Int32" />
+          <Property Name="SchemeCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vPtlosName">
+          <Key>
+            <PropertyRef Name="recNo" />
+          </Key>
+          <Property Name="recNo" Type="Int32" Nullable="false" />
+          <Property Name="controlNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="statusID" Type="Int32" />
+          <Property Name="fullnameFirst" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="designation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1117,6 +1176,30 @@ warning 6002: The table/view 'HRIS.dbo.vPtlosApp' does not have a primary key de
                 <ScalarProperty Name="subPositionName" ColumnName="subPositionName" />
                 <ScalarProperty Name="positionCode" ColumnName="positionCode" />
                 <ScalarProperty Name="subPositionCode" ColumnName="subPositionCode" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tptlosNames">
+            <EntityTypeMapping TypeName="HRISModel.tptlosName">
+              <MappingFragment StoreEntitySet="tptlosName">
+                <ScalarProperty Name="SchemeCode" ColumnName="SchemeCode" />
+                <ScalarProperty Name="statusID" ColumnName="statusID" />
+                <ScalarProperty Name="designation" ColumnName="designation" />
+                <ScalarProperty Name="EIC" ColumnName="EIC" />
+                <ScalarProperty Name="controlNo" ColumnName="controlNo" />
+                <ScalarProperty Name="recNo" ColumnName="recNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vPtlosNames">
+            <EntityTypeMapping TypeName="HRISModel.vPtlosName">
+              <MappingFragment StoreEntitySet="vPtlosName">
+                <ScalarProperty Name="designation" ColumnName="designation" />
+                <ScalarProperty Name="fullnameFirst" ColumnName="fullnameFirst" />
+                <ScalarProperty Name="statusID" ColumnName="statusID" />
+                <ScalarProperty Name="EIC" ColumnName="EIC" />
+                <ScalarProperty Name="controlNo" ColumnName="controlNo" />
                 <ScalarProperty Name="recNo" ColumnName="recNo" />
               </MappingFragment>
             </EntityTypeMapping>

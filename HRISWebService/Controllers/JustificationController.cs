@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HRISWebService.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace HRISWebService.Controllers
 {
@@ -22,6 +23,34 @@ namespace HRISWebService.Controllers
                         where r.returnTag == 1
                         select new
                         {
+                            r.fullnameFirst,
+                            r.logType,
+                            r.logTitle,
+                            r.time,
+                            date = r.date.ToString(),
+                            r.reason
+                        }).ToList();
+            dynamic wrap = new { justifications = list };
+            return Json(wrap, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult JustificationRevertDetail2(String EIC, String approvingEIC, int month, int year, int period)
+        {
+            var list = (from r in db.vJustifyApps
+                        where r.EIC == EIC
+                        where r.approveEIC == approvingEIC
+                        where r.month == month
+                        where r.year == year
+                        where r.period == period
+                        where r.returnTag == 1
+                        select new
+                        {
+                            r.recNo,
+                            r.EIC,
+                            r.month,
+                            r.year,
+                            r.monthyear,
+                            r.approveEIC,
+                            r.period,
                             r.fullnameFirst,
                             r.logType,
                             r.logTitle,
@@ -98,6 +127,64 @@ namespace HRISWebService.Controllers
             dynamic wrap = new { justifications = list };
             return Json(wrap, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult JustificationRevertPending2(String approvingEIC)
+        {
+            /**
+             * Returns a list of Justification Totals for Approval
+             */
+            var list = (from r in db.vJustifyApps
+                        group r by new
+                        {
+                            r.EIC,
+                            r.approveEIC,
+                            r.statusID,
+                            r.fullnameFirst,
+                            r.month,
+                            r.year,
+                            r.period,
+                            r.returnTag,
+                            total = (from y in db.vJustifyApps
+                                     where y.EIC == r.EIC
+                                     where y.approveEIC == r.approveEIC
+                                     where y.returnTag == 1
+                                     select y).Count()
+                        } into g
+                        orderby g.Key.fullnameFirst
+                        where g.Key.approveEIC == approvingEIC
+                        where g.Key.returnTag == 1
+                        select new
+                        {
+                            g.Key.EIC,
+                            g.Key.approveEIC,
+                            g.Key.statusID,
+                            g.Key.fullnameFirst,
+                            g.Key.total,
+                            g.Key.returnTag,
+                            details = (from x in db.vJustifyApps
+                                       group x by new
+                                       {
+                                           x.EIC,
+                                           x.approveEIC,
+                                           x.statusID,
+                                           x.month,
+                                           x.year,
+                                           x.period,
+                                           x.monthyear,
+                                           x.returnTag
+                                       } into gx
+                                       where gx.Key.EIC == g.Key.EIC
+                                       where gx.Key.approveEIC == g.Key.approveEIC
+                                       where gx.Key.returnTag == 1
+                                       where gx.Key.month == g.Key.month
+                                       where gx.Key.year == g.Key.year
+                                       where gx.Key.period == g.Key.period
+                                       select gx.Key).ToList()
+                        });
+
+            dynamic wrap = new { justifications = list };
+            return Json(wrap, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult JustificationPending(String approvingEIC)
         {
             /**
@@ -123,6 +210,62 @@ namespace HRISWebService.Controllers
                         {
                             g.Key
                         });
+
+            dynamic wrap = new { justifications = list };
+            return Json(wrap, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult JustificationPending2(String approvingEIC)
+        {
+            /**
+             * Returns a list of Justification Totals for Approval
+             */
+            var list = (from r in db.vJustifyApps
+                        group r by new
+                        {
+                            r.EIC,
+                            r.approveEIC,
+                            r.statusID,
+                            r.fullnameFirst,
+                            r.month,
+                            r.year,
+                            r.period,
+                            total = (from y in db.vJustifyApps
+                                         where y.EIC == r.EIC
+                                         where y.approveEIC == r.approveEIC
+                                         where y.statusID != 1
+                                         select y).Count()
+                        } into g
+                        orderby g.Key.fullnameFirst
+                        where g.Key.approveEIC == approvingEIC
+                        where g.Key.statusID == null
+                        select new
+                        {
+                            g.Key.EIC,
+                            g.Key.approveEIC,
+                            g.Key.statusID,
+                            g.Key.fullnameFirst,
+                            g.Key.total,
+                            details = (from x in db.vJustifyApps
+                                       group x by new
+                                       {
+                                           x.EIC,
+                                           x.approveEIC,
+                                           x.statusID,
+                                           x.month,
+                                           x.year,
+                                           x.period,
+                                           x.monthyear
+                                       } into gx
+                                       orderby gx.Key.monthyear 
+                                       where gx.Key.EIC == g.Key.EIC
+                                       where gx.Key.approveEIC == g.Key.approveEIC
+                                       where gx.Key.statusID == null
+//                                       where gx.Key.statusID != 1
+//                                       where gx.Key.month == g.Key.month
+//                                       where gx.Key.year == g.Key.year
+//                                       where gx.Key.period == g.Key.period
+                                       select gx.Key).ToList()
+                        }).DistinctBy(t => t.EIC);
 
             dynamic wrap = new { justifications = list };
             return Json(wrap, JsonRequestBehavior.AllowGet);
@@ -174,6 +317,19 @@ namespace HRISWebService.Controllers
                             date = r.date.ToString(),
                             r.reason
                         }).ToList();
+            dynamic wrap = new { justifications = list };
+            return Json(wrap, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult JustificationDetail2(String EIC, String approvingEIC, int month, int year, int period)
+        {
+            var list = (from r in db.vJustifyApps
+                        where r.EIC == EIC
+                        where r.approveEIC == approvingEIC
+                        where r.month == month
+                        where r.year == year
+                        where r.period == period
+                        where r.statusID != 1
+                        select r).ToList();
             dynamic wrap = new { justifications = list };
             return Json(wrap, JsonRequestBehavior.AllowGet);
         }

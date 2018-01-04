@@ -18,6 +18,7 @@ namespace HRISWebService.Controllers
             {
                 var passSlip = db.tpassSlipApps.Single(r => r.recNo == id);
                 passSlip.statusID = statusId;
+                passSlip.isOfficialprev = passSlip.isOfficial + " = " + passSlip.apprvEIC;
                 passSlip.isOfficial = isOfficial;
 
                 db.SaveChanges();
@@ -34,6 +35,28 @@ namespace HRISWebService.Controllers
         {
             var list = (from r in db.vpassSlipApps
                         where r.recNo == id
+                        select new
+                        {
+                            recNo = r.recNo,
+                            controlNo = r.controlNo,
+                            EIC = r.EIC,
+                            fullnameFirst = r.fullnameFirst,
+                            timeOut = r.timeOut.ToString(),
+                            timeIn = r.timeIn.ToString(),
+                            destination = r.destination,
+                            purpose = r.purpose,
+                            isOfficial = r.isOfficial,
+                            statusID = r.statusID,
+                            apprvEIC = r.apprvEIC,
+                        }).ToList();
+            dynamic listWrapper = new { pass_slip_detail = list };
+            return Json(listWrapper, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult PassSlipDetail2(String approvingEIC)
+        {
+            var list = (from r in db.vpassSlipApps
+                        where r.apprvEIC == approvingEIC
+                        where r.statusID == 0   // 0 (pending)
                         select new
                         {
                             recNo = r.recNo,
